@@ -1,6 +1,7 @@
 >>>HTML
 <div id="counter"></div>
 <button id="start-counterfive">start reloading after every 5 seconds</button>
+<button id="start-counterten">start reloading after every 10 seconds</button>
 <button id="stop-counter">stop reloading after every 5 seconds</button>
 
 
@@ -8,16 +9,24 @@
 <script>
   let reloadTimeout = null;
   const startReloading = () =>
-    (reloadTimeout = setTimeout(() => window.location.reload(), 5000));
+    (reloadTimeout = setTimeout(() => window.location.reload(), localStorage.myTimer));
   const counterElement = document.getElementById("counter");
-  const startCounterElement = document.getElementById("start-counterfive");
+  const startCounterElement1 = document.getElementById("start-counterfive");
+  const startCounterElement2 = document.getElementById("start-counterten");
   const stopCounterElement = document.getElementById("stop-counter");
-  startCounterElement.addEventListener("click", () => {
+  startCounterElement1.addEventListener("click", () => {
     localStorage.reloadActive = true;
+	localStorage.myTimer = 5000
+    startReloading();
+  });
+  startCounterElement2.addEventListener("click", () => {
+    localStorage.reloadActive = true;
+	localStorage.myTimer = 10000
     startReloading();
   });
   stopCounterElement.addEventListener("click", () => {
     localStorage.reloadActive = false;
+	localStorage.removeItem("myTimer");
     clearTimeout(reloadTimeout);
   });
   let counter = 0;
