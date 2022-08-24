@@ -1,17 +1,16 @@
 >>>HTML
 <div id="counter"></div>
-<button id="start-counter">start reloading after every 5 seconds</button>
+<button id="start-counterfive">start reloading after every 5 seconds</button>
 <button id="stop-counter">stop reloading after every 5 seconds</button>
 
 
 >>>JS
-
 <script>
   let reloadTimeout = null;
   const startReloading = () =>
     (reloadTimeout = setTimeout(() => window.location.reload(), 5000));
   const counterElement = document.getElementById("counter");
-  const startCounterElement = document.getElementById("start-counter");
+  const startCounterElement = document.getElementById("start-counterfive");
   const stopCounterElement = document.getElementById("stop-counter");
   startCounterElement.addEventListener("click", () => {
     localStorage.reloadActive = true;
